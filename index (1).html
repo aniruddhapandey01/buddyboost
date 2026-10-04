@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BuddyBoost - a friendly AI-style study companion for students." />
+  <title>BuddyBoost — Study Better, Together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="topbar">
+      <a href="#" class="brand">
+        <span class="brand-mark">✦</span>
+        <span>buddyboost</span>
+      </a>
+      <span class="open-badge"><span class="dot"></span> Open-source AI ready</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE HELP GOES A LONG WAY</p>
+          <h1>Big goals.<br><span>Small next steps.</span></h1>
+          <p class="hero-text">
+            A calm, friendly study buddy that helps turn
+            “I have so much to do” into “I know what to do next.”
+          </p>
+
+          <div class="hero-points">
+            <span>✓ Made for real student life</span>
+            <span>✓ Works as a simple front-end app</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+
+          <div class="note-card card-back">
+            <span>ONE THING AT A TIME</span>
+            <div class="mini-lines"></div>
+          </div>
+
+          <div class="note-card card-front">
+            <div class="sparkle">✦</div>
+            <strong>You can do this.</strong>
+            <p>One focused session<br>is a great start.</p>
+            <div class="progress"><i></i></div>
+            <small>YOUR NEXT WIN: 25 MIN</small>
+          </div>
+
+          <span class="floating f1">☁</span>
+          <span class="floating f2">✧</span>
+          <span class="floating f3">♡</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR STUDY RESET</p>
+            <h2>Let's make a plan.</h2>
+          </div>
+          <span class="step-count">01 <span>/</span> 02</span>
+        </div>
+
+        <form id="plannerForm" class="planner-card">
+          <div class="form-grid">
+
+            <label class="field">
+              <span>What should we call you?</span>
+              <input id="name" maxlength="32" placeholder="Your name (optional)" />
+            </label>
+
+            <label class="field">
+              <span>What's your goal today? <b>*</b></span>
+              <input id="goal" required maxlength="180" placeholder="e.g. Understand arrays in C" />
+            </label>
+
+            <label class="field field-wide">
+              <span>Which subject or topic? <b>*</b></span>
+              <input id="subject" required maxlength="180" placeholder="e.g. C programming — arrays and loops" />
+            </label>
+
+            <div class="field">
+              <span>How much time do you have?</span>
+              <div class="range-row">
+                <input id="minutes" type="range" min="10" max="90" step="5" value="25" />
+                <strong id="minutesLabel">25 min</strong>
+              </div>
+            </div>
+
+            <div class="field">
+              <span>How's your energy?</span>
+              <div class="choice-row" id="energyChoices">
+                <button type="button" class="choice selected" data-energy="Low">🌱 Low</button>
+                <button type="button" class="choice" data-energy="Okay">🙂 Okay</button>
+                <button type="button" class="choice" data-energy="High">⚡ High</button>
+              </div>
+            </div>
+
+            <div class="field field-wide">
+              <span>Choose your coaching vibe</span>
+              <div class="choice-row" id="styleChoices">
+                <button type="button" class="choice selected" data-style="gentle">💛 Gentle</button>
+                <button type="button" class="choice" data-style="structured">🧭 Structured</button>
+                <button type="button" class="choice" data-style="playful">🎉 Playful</button>
+              </div>
+            </div>
+          </div>
+
+          <button class="primary-button" id="generateBtn" type="submit">
+            <span>Build my study plan</span>
+            <span>↗</span>
+          </button>
+
+          <p class="privacy-note">🔒 No account or database is needed for this demo.</p>
+        </form>
+      </section>
+
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="section-heading result-heading">
+          <div>
+            <p class="eyebrow">YOUR PERSONAL GAME PLAN</p>
+            <h2>You've got a plan.</h2>
+            <p id="greeting" class="result-greeting"></p>
+          </div>
+          <span class="result-spark">✦</span>
+        </div>
+
+        <div id="planList" class="plan-list"></div>
+
+        <div class="win-card">
+          <div class="win-icon">🌟</div>
+          <div>
+            <p class="eyebrow">START WITH THIS TINY WIN</p>
+            <p id="tinyWin"></p>
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-title">
+            <div>
+              <p class="eyebrow">QUICK RECALL</p>
+              <h3>Check what stuck.</h3>
+            </div>
+            <span>3 quick questions</span>
+          </div>
+          <div id="quizList"></div>
+        </div>
+
+        <div class="friend-card">
+          <div class="friend-icon">♡</div>
+          <div>
+            <p class="eyebrow">BETTER TOGETHER</p>
+            <p id="friendMessage"></p>
+          </div>
+          <button id="copyMessage" class="copy-button" type="button">Copy message</button>
+        </div>
+
+        <p id="modeNote" class="mode-note"></p>
+
+        <button id="startOver" class="secondary-button" type="button">
+          ← Make another plan
+        </button>
+      </section>
+
+      <div id="errorBox" class="error-box hidden" role="alert"></div>
+    </main>
+
+    <footer>
+      <span>Made for the friend who says “I'll start in five minutes.”</span>
+      <span>BuddyBoost · Hacktoberfest 2026</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
